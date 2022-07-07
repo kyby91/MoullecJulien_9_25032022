@@ -22,10 +22,10 @@ const row = (bill) => {
 const rows = (data) => {
   if(data && data.length){
     console.log(data)
-    data = data.sort(function(a, b){ return ((a.date < b.date) ? 1 : -1) })
+    data = data.sort(function(a, b){ return ((new Date(a.date) > new Date(b.date)) ? 0 : -1) })
     console.log(data)
     data = data.map(bill => row(bill)).join("")
-    console.log(data)
+    // console.log(data)
     return data
   }else{
     return ""
