@@ -56,6 +56,7 @@ export default class NewBill {
     console.log('e.target.querySelector(`input[data-testid="datepicker"]`).value', e.target.querySelector(`input[data-testid="datepicker"]`).value)
     const filePath = e.target.querySelector(`input[data-testid="file"]`).value.split(/\\/g)
     let allowedExtensions = /(\.jpg|\.jpeg|\.png)$/i; 
+    let fileFieldError = document.createElement("span")
     if(!allowedExtensions.exec(filePath)) {
       fileFieldError.textContent = "Merci de télécharger un fichier au format .jpg, .jpeg ou .png"
 
