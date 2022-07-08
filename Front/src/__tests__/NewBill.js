@@ -6,7 +6,7 @@
  import { ROUTES } from "../constants/routes"
  import NewBillUI from "../views/NewBillUI.js"
  import NewBill from "../containers/NewBill.js"
- import { bills } from "../fixtures/bills.js";
+ import { bills } from "../fixtures/bills.js"
  
  import mockStore from "../__mocks__/store";
  jest.mock("../app/store", () => mockStore)

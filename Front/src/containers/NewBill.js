@@ -31,6 +31,7 @@ export default class NewBill {
     fileField.parentElement.append(fileFieldError)
     if(!allowedExtensions.exec(filePath)) {
       fileFieldError.textContent = "Merci de télécharger un fichier au format .jpg, .jpeg ou .png"
+      window.alert("Merci de télécharger un fichier au format .jpg, .jpeg ou .png")
 
     }else{
       $('.file-error-msg').remove();
@@ -55,29 +56,22 @@ export default class NewBill {
     e.preventDefault()
     console.log('e.target.querySelector(`input[data-testid="datepicker"]`).value', e.target.querySelector(`input[data-testid="datepicker"]`).value)
     const filePath = e.target.querySelector(`input[data-testid="file"]`).value.split(/\\/g)
-    let allowedExtensions = /(\.jpg|\.jpeg|\.png)$/i; 
-    let fileFieldError = document.createElement("span")
-    if(!allowedExtensions.exec(filePath)) {
-      fileFieldError.textContent = "Merci de télécharger un fichier au format .jpg, .jpeg ou .png"
-
-    }else{
-      const email = JSON.parse(localStorage.getItem("user")).email
-      const bill = {
-        email,
-        type: e.target.querySelector(`select[data-testid="expense-type"]`).value,
-        name:  e.target.querySelector(`input[data-testid="expense-name"]`).value,
-        amount: parseInt(e.target.querySelector(`input[data-testid="amount"]`).value),
-        date:  e.target.querySelector(`input[data-testid="datepicker"]`).value,
-        vat: e.target.querySelector(`input[data-testid="vat"]`).value,
-        pct: parseInt(e.target.querySelector(`input[data-testid="pct"]`).value) || 20,
-        commentary: e.target.querySelector(`textarea[data-testid="commentary"]`).value,
-        fileUrl: this.fileUrl,
-        fileName: this.fileName,
-        status: 'pending'
-      }
-      this.updateBill(bill)
-      this.onNavigate(ROUTES_PATH['Bills'])
+    const email = JSON.parse(localStorage.getItem("user")).email
+    const bill = {
+      email,
+      type: e.target.querySelector(`select[data-testid="expense-type"]`).value,
+      name:  e.target.querySelector(`input[data-testid="expense-name"]`).value,
+      amount: parseInt(e.target.querySelector(`input[data-testid="amount"]`).value),
+      date:  e.target.querySelector(`input[data-testid="datepicker"]`).value,
+      vat: e.target.querySelector(`input[data-testid="vat"]`).value,
+      pct: parseInt(e.target.querySelector(`input[data-testid="pct"]`).value) || 20,
+      commentary: e.target.querySelector(`textarea[data-testid="commentary"]`).value,
+      fileUrl: this.fileUrl,
+      fileName: this.fileName,
+      status: 'pending'
     }
+    this.updateBill(bill)
+    this.onNavigate(ROUTES_PATH['Bills'])
   }
 
   // not need to cover this function by tests
